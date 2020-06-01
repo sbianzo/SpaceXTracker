@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:logintest/launch_provider.dart';
-import 'package:logintest/model/launch.dart';
+import 'package:logintest/model/launch_model.dart';
+import 'package:logintest/provider/launch_provider.dart';
+import 'package:logintest/widget/drawer.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -37,6 +38,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final bloc = Provider.of<LaunchProvider>(context).bloc;
     return Scaffold(
+      drawer: AppDrawer(isHome: true),
       appBar: AppBar(
         title: Text(
           'SpaceX Launch Tracker',

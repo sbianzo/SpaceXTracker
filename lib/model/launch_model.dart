@@ -1,4 +1,4 @@
-import 'package:logintest/model/rocket.dart';
+import 'package:logintest/model/rocket_model.dart';
 
 class Launch {
   final DateTime launchTime;
