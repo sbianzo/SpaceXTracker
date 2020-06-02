@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:logintest/main.dart';
-import 'package:logintest/screens/rocket.dart';
+
+import '../main.dart';
+import '../screens/mission.dart';
+import '../screens/rocket.dart';
 
 class AppDrawer extends StatelessWidget {
   final bool isHome;
@@ -41,7 +43,10 @@ class AppDrawer extends StatelessWidget {
                 'Missions',
                 style: TextStyle(fontSize: 20),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MissionScreen()));
+              },
             ),
             ListTile(
               title: Text(

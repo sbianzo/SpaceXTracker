@@ -1,7 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import 'package:logintest/model/launch_model.dart';
-import 'package:logintest/model/rocket_model.dart';
+
+import '../model/launch_model.dart';
+import '../model/mission_model.dart';
+import '../model/rocket_model.dart';
 
 class LaunchService {
   Future<Launch> getLaunch(int n) async {
@@ -15,23 +17,23 @@ class LaunchService {
     return launch;
   }
 
-  Future<Rocket> getRockets() async {
+  Future<List<Rocket>> getRocketsList() async {
     var response = await http.get('https://api.spacexdata.com/v3/rockets');
 
-    var json = convert.jsonDecode(response.body);
-
-    var rockets = Rocket.fromJson(json);
+    List<Rocket> rockets = (convert.jsonDecode(response.body) as List)
+        .map((data) => Rocket.fromJson(data))
+        .toList();
 
     return rockets;
   }
 
-  Future<List<RocketA>> getRocketsList() async {
-    var response = await http.get('https://api.spacexdata.com/v3/rockets');
+  Future<List<Mission>> getMissionsList() async {
+    var response = await http.get('https://api.spacexdata.com/v3/missions');
 
-    List<RocketA> rockets = (convert.jsonDecode(response.body) as List)
-        .map((data) => RocketA.fromJson(data))
+    List<Mission> missions = (convert.jsonDecode(response.body) as List)
+        .map((data) => Mission.fromJson(data))
         .toList();
 
-    return rockets;
+    return missions;
   }
 }

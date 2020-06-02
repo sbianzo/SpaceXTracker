@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:logintest/bloc/launch_bloc.dart';
+
+import '../bloc/launch_bloc.dart';
 
 class LaunchProvider with ChangeNotifier {
   LaunchBloc _bloc;

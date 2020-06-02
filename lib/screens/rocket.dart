@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:logintest/model/rocket_model.dart';
-import 'package:logintest/provider/launch_provider.dart';
-import 'package:logintest/widget/drawer.dart';
 import 'package:provider/provider.dart';
+
+import '../model/rocket_model.dart';
+import '../provider/launch_provider.dart';
+import '../widget/drawer.dart';
 
 class RocketScreen extends StatelessWidget {
   @override
@@ -18,17 +19,18 @@ class RocketScreen extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: StreamBuilder<List<RocketA>>(
+        body: StreamBuilder<List<Rocket>>(
             stream: bloc.listRocket,
             builder: (context, snapshot) {
               if (!snapshot.hasData) return Container();
-              print('lunghezz<aaaa ' + snapshot.data.length.toString());
 
               return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
                     title: Text(snapshot.data[index].rocketName),
+                    contentPadding: EdgeInsets.all(5),
+                    subtitle: Text(snapshot.data[index].firstFlight),
                   );
                 },
               );

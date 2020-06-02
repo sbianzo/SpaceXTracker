@@ -1,4 +1,4 @@
-import 'package:logintest/model/rocket_model.dart';
+import '../model/rocket_model.dart';
 
 class Launch {
   final DateTime launchTime;
@@ -6,7 +6,7 @@ class Launch {
 
   Launch({this.launchTime, this.rocket});
 
-  Launch.fromJson(Map<dynamic, dynamic> parsedJson)
+  Launch.fromJson(Map<String, dynamic> parsedJson)
       : launchTime = DateTime.parse(parsedJson['launch_date_utc']),
         rocket = Rocket.fromJson(parsedJson['rocket']);
 }
