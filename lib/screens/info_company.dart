@@ -24,17 +24,58 @@ class InfoCompany extends StatelessWidget {
             builder: (context, snapshot) {
               if (!snapshot.hasData) return Container();
 
-              return Column(
-                children: <Widget>[
-                  Text('Name Company: ' + snapshot.data.name),
-                  Text('Name Founder:' + snapshot.data.founder),
-                  Text('Founded Year: ' + snapshot.data.yearFounded.toString()),
-                  Text('Number of Employees: ' +
-                      snapshot.data.employees.toString()),
-                  Text('Summary: ' + snapshot.data.summary),
-                  Text('Twitter: ' + snapshot.data.links.twitter),
-                ],
+              return Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: <Widget>[
+                    _buildRowText(
+                        context, 'Name company', snapshot.data.name, false),
+                    _buildRowText(
+                        context, 'Name founder', snapshot.data.founder, false),
+                    _buildRowText(context, 'Founded year',
+                        snapshot.data.yearFounded.toString(), false),
+                    _buildRowText(context, 'Number of employees',
+                        snapshot.data.employees.toString(), false),
+                    _buildRowText(
+                        context, 'Summary', snapshot.data.summary, true),
+                    _buildRowText(
+                        context, 'Twitter', snapshot.data.links.twitter, false),
+                  ],
+                ),
               );
             }));
+  }
+
+  Widget _buildRowText(
+      BuildContext context, String name, String info, bool isSummary) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Container(
+        height: isSummary ? 130 : 50,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '$name:   ',
+              style: GoogleFonts.lato(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.orange),
+            ),
+            Flexible(
+              child: Text(
+                info,
+                style: GoogleFonts.lato(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        )),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: Colors.grey[700]),
+      ),
+    );
   }
 }

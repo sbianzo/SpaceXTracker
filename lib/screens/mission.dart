@@ -41,15 +41,25 @@ class MissionScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(snapshot.data[index].missionName),
-                  contentPadding: EdgeInsets.all(5),
-                  subtitle: RaisedButton(
-                      onPressed: () {
-                        _launchInWebViewWithJavaScript(
-                            snapshot.data[index].wiki);
-                      },
-                      child: Text(snapshot.data[index].wiki)),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: ListTile(
+                    title: Text(snapshot.data[index].missionName,
+                        style: GoogleFonts.lato(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.orange)),
+                    contentPadding: EdgeInsets.all(5),
+                    subtitle: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        onPressed: () {
+                          _launchInWebViewWithJavaScript(
+                              snapshot.data[index].wiki);
+                        },
+                        child: Text(snapshot.data[index].wiki)),
+                  ),
                 );
               },
             );

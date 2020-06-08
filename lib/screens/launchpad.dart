@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logintest/widget/list_info.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/launch_provider.dart';
@@ -27,10 +28,12 @@ class LaunchpadScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(snapshot.data[index].name),
-                  contentPadding: EdgeInsets.all(5),
-                  subtitle: Text(snapshot.data[index].status),
+                return ListInfo(
+                  nameTitle: 'Launchpad name: ',
+                  nameSubtitle: 'Status: ',
+                  infoTitle: snapshot.data[index].name,
+                  infosubtitle: snapshot.data[index].status,
+                  isLaunchpad: true,
                 );
               },
             );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logintest/widget/list_info.dart';
 import 'package:provider/provider.dart';
 
 import '../model/rocket_model.dart';
@@ -27,10 +28,12 @@ class RocketScreen extends StatelessWidget {
               return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(snapshot.data[index].rocketName),
-                    contentPadding: EdgeInsets.all(5),
-                    subtitle: Text(snapshot.data[index].firstFlight),
+                  return ListInfo(
+                    nameTitle: 'Rocket name: ',
+                    nameSubtitle: 'First flight: ',
+                    infoTitle: snapshot.data[index].rocketName,
+                    infosubtitle: snapshot.data[index].firstFlight,
+                    isLaunchpad: false,
                   );
                 },
               );
